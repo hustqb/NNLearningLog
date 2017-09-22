@@ -1,6 +1,4 @@
 # coding=utf-8
-from __future__ import print_function
-
 """
 follow 菜鸡的啄米日常/使用keras搭建残差网络
 """
@@ -220,9 +218,9 @@ if __name__ == '__main__':
 	                       classes=1000)  # 输出类别数目
 	
 	img = image.load_img(img_path, target_size=(224, 224))
-	x_main = image.img_to_array(img)
-	x_main = np.expand_dims(x_main, axis=0)
-	x_main = preprocess_input(x_main)
+	x_main = image.img_to_array(img)  # shape=(224, 224, 3)
+	x_main = np.expand_dims(x_main, axis=0)  # shape=(1, 224, 224, 3)
+	x_main = preprocess_input(x_main)  # mean=0
 	print('Input image shape:', x_main.shape)
 	
 	preds_main = model_main.predict(x_main)
