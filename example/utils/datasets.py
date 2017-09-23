@@ -8,6 +8,13 @@ import numpy as np
 from six.moves import cPickle
 
 
+def load_mnist():
+	path = os.path.join(os.getcwd(), 'famousData/mnist.npz')
+	data = np.load(path)
+	return (data['x_train'], data['y_train']), \
+	       (data['x_test'], data['y_test'])
+
+
 def load_batch(fpath, label_key='labels'):
 	"""Internal utility for parsing CIFAR data.
     # Arguments
