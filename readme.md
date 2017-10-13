@@ -6,6 +6,7 @@ example中是基于keras的神经网络的例子。
 
 - ImdbCNN 用CNN检测评论是正面的还是负面的
 - mnistCNN 用CNN判断手写数字，同时，输出了第一层的输入、输出和权重图片，保存的位置在~/NNLearningLog/example/LearnCNN
+- cifar_10_cnn 用CNN对图片进行分类。
 #### LearnResNet
 这个文件夹可以单独下载，然后在本地的该文件夹下运行py代码，可以检测图片中的物体。
 为什么呢？
@@ -26,6 +27,8 @@ example中是基于keras的神经网络的例子。
 	3. weight.png表示mnistCNN网络输入层到第一层的权重（卷积核参数）
 ### notebook
 笔记
+- *ImageDataGenerator* 是keras中的一个图片预处理API
+- Keras函数式API
 - 知乎大神的AI经验
 - 学习资料
 - Softmax变换

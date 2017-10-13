@@ -10,3 +10,14 @@ mnistCNN中的数据来自于`NNLearningLog/famousData/mnist.npz`。
 1.在`example`中新建空文件`__main__.py`
 2.在命令行中运行时，切换到`NNLearnLog`目录下，
 使用命令`python -m example/LearnCNN/mnistCNN`
+### ImdbCNN
+ImdbCNN中的数据是有关于评论的数据，来自于`NNLearningLog/famousData/imdb.npz`
+同时在代码中还调用了包外`NNLearningLog/example/utils/datasets.py`中的`load_imdb`。
+
+虽然imdb数据是时间序列，但它用CNN网络来训练可以达到80%的准确率。
+不过，如果把优化器从Adam换成sgd，网络会没有学习能力，只有50%的准确率。
+### cifar_10_cnn
+cifar_10_cnn的数据是图片，它的工作就是将图片分类成10类。
+数据的获取方式和上面的几个例程一样。
+
+用简单的CNN-maxpool-dense来做，准确率为60%，不过据说一直迭代最终可以达到80%的准确率。
