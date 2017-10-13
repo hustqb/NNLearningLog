@@ -135,7 +135,7 @@ def load_batch(fpath, label_key='labels'):
 
 
 def load_cifar10():
-	cifar10_path = r'/home/zqb/data/cifar-10-batches-py'
+	cifar10_path = r'/home/zqb/zqb_code/NNLearningLog/famousData/cifar-10-batches-py'
 	num_train_samples = 50000
 	x_train = np.zeros((num_train_samples, 32, 32, 3), dtype='uint8')
 	y_train = np.zeros((num_train_samples,), dtype='uint8')
@@ -154,7 +154,7 @@ def load_cifar10():
 
 
 if __name__ == '__main__':
-	temp_data, temp_labels = load_batch(r'/home/zqb/data/cifar-10-batches-py/data_batch_1')
+	temp_data, temp_labels = load_batch(r'/home/zqb/zqb_code/NNLearningLog/famousData/cifar-10-batches-py/data_batch_1')
 	print(temp_data)
 	print(temp_labels)
 	print(temp_data.shape)
