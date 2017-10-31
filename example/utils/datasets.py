@@ -116,6 +116,44 @@ def get_word_index():
 	return data
 
 
+def load_reuter(num_words=None, skip_top=0, maxlen=None, test_split=0.2,
+                seed=113, start_char=1, oov_char=2, index_from=3):
+	"""Loads the Reuters newswire classification dataset."""
+	with np.load('/home/zqb/zqb_code/NNLearningLog/famousData/reuters.npz') as f:
+		xs, labels = f['x'], f['y']
+
+	np.random.seed(seed)
+	np.random.shuffle(xs)
+	np.random.seed(seed)
+	np.random.shuffle(labels)
+	if start_char is not None:
+		xs = [[start_char] + [w + index_from for w in x] for x in xs]
+	elif index_from:
+		xs = [[w + index_from for w in x] for x in xs]
+	if not num_words:
+		num_words = max([max(x) for x in xs])
+	# by convention, use 2 as OOV word
+	# reserve 'index_from' (=3 by default) characters:
+	# 0(padding), 1(start), 2(OOV)
+	if oov_char is not None:
+		xs = [[w if (skip_top <= w < num_words) else oov_char for w in x] for x in xs]
+	else:
+		xs = [[w for w in x if (skip_top <= w < num_words)] for x in xs]
+	idx = int(len(xs) * (1 - test_split))
+	x_train, y_train = np.array(xs[:idx]), np.array(labels[:idx])
+	x_test, y_test = np.array(xs[idx:]), np.array(labels[idx:])
+
+	return (x_train, y_train), (x_test, y_test)
+
+
+def get_reuter_index():
+	"""Retrieves the dictionary mapping word indices back to words."""
+	f = open('/home/zqb/zqb_code/NNLearningLog/famousData/reuters_word_index.json')
+	data = json.load(f)
+	f.close()
+	return data
+
+
 def load_batch(fpath, label_key='labels'):
 	"""Internal utility for parsing CIFAR data.
 	# Arguments
