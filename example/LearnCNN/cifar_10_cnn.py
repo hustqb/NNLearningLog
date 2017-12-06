@@ -1,19 +1,14 @@
 # coding=utf-8
 """
 Train a simple deep CNN on the CIFAR10 small images dataset.
-GPU run command with Theano backend (with TensorFlow, the GPU is automatically used):
-	THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatx=float32 python cifar10_cnn.py
-It gets down to 0.65 test logloss in 25 epochs, and down to 0.55 after 50 epochs.
-(it's still underfitting at that point, though).
 """
-
+from __future__ import print_function
 import keras
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Dense, Dropout, Flatten, Input
 from keras.models import Model
 from keras.preprocessing.image import ImageDataGenerator
-
-from example.utils.datasets import load_cifar10
+from utils.datasets import load_cifar10
 
 input_shape = (32, 32, 3)
 batch_size = 32

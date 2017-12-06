@@ -10,11 +10,25 @@
 ## 可用预定义张量
 除fbeta_score额外拥有默认参数beta=1外,其他各个性能指标的参数均为y_true和y_pred
 
-- binary_accuracy: 对二分类问题,计算在所有预测值上的平均正确率
-- categorical_accuracy:对多分类问题,计算再所有预测值上的平均正确率
-- sparse_categorical_accuracy:与categorical_accuracy相同,在对稀疏的目标值预测时有用
-- top_k_categorical_accracy: 计算top-k正确率,当预测值的前k个值中存在目标类别即认为预测正确
-- sparse_top_k_categorical_accuracy：与top_k_categorical_accracy作用相同，但适用于稀疏情况
+### binary_accuracy
+对二分类问题,计算在所有预测值上的平均正确率
+```K.mean(K.equal(y_true, K.round(y_pred)), axis=-1)```
+$$$$
+### categorical_accuracy
+对多分类问题,计算再所有预测值上的平均正确率
+```K.cast(K.equal(K.argmax(y_true, axis=-1),
+                          K.argmax(y_pred, axis=-1)),
+                  K.floatx())```
+### sparse_categorical_accuracy
+与categorical_accuracy相同,在对稀疏的目标值预测时有用
+```K.cast(K.equal(K.max(y_true, axis=-1),
+                          K.cast(K.argmax(y_pred, axis=-1), K.floatx())),
+                  K.floatx())```
+### top_k_categorical_accracy
+计算top-k正确率,当预测值的前k个值中存在目标类别即认为预测正确
+```K.mean(K.in_top_k(y_pred, K.argmax(y_true, axis=-1), k), axis=-1)```
+### sparse_top_k_categorical_accuracy
+与top_k_categorical_accracy作用相同，但适用于稀疏情况
 ## 定制评估函数
 定制的评估函数可以在模型编译时传入,该函数应该以(y_true, y_pred)为参数,并返回单个张量,
 或从metric_name映射到metric_value的字典,下面是一个示例:
