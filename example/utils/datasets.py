@@ -119,7 +119,7 @@ def get_word_index():
 def load_reuter(num_words=None, skip_top=0, maxlen=None, test_split=0.2,
                 seed=113, start_char=1, oov_char=2, index_from=3):
 	"""Loads the Reuters newswire classification dataset."""
-	with np.load('/home/zqb/zqb_code/NNLearningLog/famousData/reuters.npz') as f:
+	with np.load('famousData/reuters.npz') as f:
 		xs, labels = f['x'], f['y']
 
 	np.random.seed(seed)
