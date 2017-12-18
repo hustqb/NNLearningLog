@@ -10,6 +10,9 @@ example中是基于keras的神经网络的例子。
 - mnistCNN 用CNN判断手写数字，同时，输出了第一层的输入、输出和权重图片，保存的位置在~/NNLearningLog/example/LearnCNN
 - cifar_10_cnn 用CNN对图片进行分类。
 - vanGogh 图像风格转移
+### LearnLSTM
+- imdb_cnn_lstm CNN与LSTM的结合，很简单的例子
+- imdb_lstm LSTM网络，简单
 ### LearnResNet
 预训练的50层残差网络，识别图片
 ### siamese
