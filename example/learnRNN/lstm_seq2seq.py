@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Sequence to sequence example in Keras (character-level).
 This script demonstrates how to implement a basic character-level
@@ -12,6 +13,7 @@ models are more common in this domain.
     (e.g. French sentences).
 - An encoder LSTM turns input sequences to 2 state vectors
     (we keep the last LSTM state and discard the outputs).
+    LSTM层有两个输出：状态层和输出层，在这里保留最后的状态，丢弃输出
 - A decoder LSTM is trained to turn the target sequences into
     the same sequence but offset by one timestep in the future,
     a training process called "teacher forcing" in this context.

@@ -12,9 +12,25 @@ example中是基于keras的神经网络的例子。
 - vanGogh 图像风格转移
 ### LearnLSTM
 - imdb_cnn_lstm CNN与LSTM的结合，很简单的例子
+	1. 填充样本序列
+	2. 嵌入层+Dropout+一维卷积+池化层+LSTM+输出层
 - imdb_lstm LSTM网络，简单
+	1. 填充样本序列
+	2. 嵌入层+LSTM+输出层
 ### LearnResNet
 预训练的50层残差网络，识别图片
+### LearnRNN
+- addition_rnn 自动计算1000以内的加法运算, 非常巧妙的利用seq2seq思想
+	1. 处理数据
+	2. 网络结构：
+		1. 第一层LSTM提取输入(n, 7, 12)的隐变量(n, 128)；
+		2. 第二层RepeatVector将隐变量分成4份(n, 4, 128)；
+		3. 第三层LSTM(return_sequences=True)解码这4个隐变量(n, 4, 128)；
+		5. 第四层TimeDistributed+Dense层，用4个相同的全连接层输出解码后的隐变量，输出(n, 4, 12).
+- babi_rnn 阅读理解，输入一段话和一个问题，输出答案
+- mnist_hierarchical_rnn 分层的rnn
+	1. 运用TimeDistributed对原图像(n, 28, 28, 3)每一行调用lstm得(n, 28, 128)
+	2. 再来一个lstm得(n, 128)，最后接一个分类输出Dense
 ### siamese
 图片对比：输入两个图片，判断图片内容是否相同。该网络常用于人脸识别。
 ### utils

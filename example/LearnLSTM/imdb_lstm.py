@@ -11,10 +11,12 @@ from what you see with CNNs/MLPs/etc.
 """
 from __future__ import print_function
 
+import keras
 from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers import Dense, Embedding
 from keras.layers import LSTM
+# from utils.datasets import load_imdb
 from keras.datasets import imdb
 
 max_features = 20000
@@ -37,6 +39,7 @@ model = Sequential()
 model.add(Embedding(max_features, 128))
 model.add(LSTM(128, dropout=0.2, recurrent_dropout=0.2))
 model.add(Dense(1, activation='sigmoid'))
+print('model.summary:\n', model.summary())
 
 # try using different optimizers and different optimizer configs
 model.compile(loss='binary_crossentropy',
@@ -47,7 +50,8 @@ print('Train...')
 model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=15,
-          validation_data=(x_test, y_test))
+          validation_data=(x_test, y_test),
+          callbacks=[keras.callbacks.TensorBoard()])
 score, acc = model.evaluate(x_test, y_test,
                             batch_size=batch_size)
 print('Test score:', score)

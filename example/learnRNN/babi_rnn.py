@@ -4,7 +4,7 @@ Trains two recurrent neural networks based upon a story and a question.
 The resulting merged vector is then queried to answer a range of bAbI tasks.
 The results are comparable to those for an LSTM model provided in Weston et al.:
 "Towards AI-Complete Question Answering: A Set of Prerequisite Toy Tasks"
-这里有很多数据，改程序只用了一份，准确率：0.264
+这里有很多数据，该程序只用了一份，准确率：0.264
 """
 
 from __future__ import print_function
